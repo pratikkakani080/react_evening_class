@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../button'
+import ButtonCustomComponent from '../button'
+import { Button } from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { decremented, getData, incremented } from '../../redux/reducers/userReducer'
 export default function User({ setButtonLabel }) {
-
+    const dispatch = useDispatch()
     const [todoData, setTodoData] = useState([])
 
     const getTodoList = () => {
@@ -23,8 +26,15 @@ export default function User({ setButtonLabel }) {
         setTodoData([...todoData])
     }
 
+    useEffect(() => {
+      dispatch(getData())
+    }, [])
+    
+
     return (
         <div>
+            <Button variant="contained" color='primary' onClick={() => dispatch(incremented(5))} >Increment</Button>
+            <Button variant="contained" color='warning' onClick={() => dispatch(decremented())} >Decrement</Button>
             <table>
                 <tr>
                     <th>
@@ -52,7 +62,7 @@ export default function User({ setButtonLabel }) {
                     })
                 }
             </table>
-            <Button setButtonLabel={setButtonLabel} />
+            <ButtonCustomComponent setButtonLabel={setButtonLabel} />
         </div>
     )
 }

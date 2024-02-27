@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Context from "../../helper/fileContext";
+import { useSelector } from "react-redux";
 
 // CRUD
 // Create - POST method - create a data
@@ -10,10 +11,12 @@ import Context from "../../helper/fileContext";
 
 export default function Form(props) {
     // console.log('***', window.location.search.split('').pop());
+    const data = useSelector((store) => store)
+    console.log('data***', data);
 
     const contextData = useContext(Context)
 
-    console.log('contextData*****', contextData);
+    // console.log('contextData*****', contextData);
 
     const params = useParams()
     // console.log('**', params);
