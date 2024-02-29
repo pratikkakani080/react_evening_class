@@ -8,6 +8,8 @@ import { useState } from 'react';
 import Context from './helper/fileContext';
 import UseRef from './hooks/useref';
 import Reactmemo from './hooks/reactmemo';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
 
@@ -25,19 +27,21 @@ function App() {
   // ]);
 
   return (
-    <Context.Provider value={{ buttonLabel, setButtonLabel }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/form' element={<Form />} />
-          <Route path='/form/:id' element={<Form />} />
-          <Route path='/table' element={<Table />} />
-          <Route path='/user' element={<User />} />
-          <Route path='/useref' element={<UseRef />} />
-          <Route path='/reactmemo' element={<Reactmemo />} />
-        </Routes>
-      </BrowserRouter>
-    </Context.Provider>
+    <Provider store={store}>
+      <Context.Provider value={{ buttonLabel, setButtonLabel }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/form' element={<Form />} />
+            <Route path='/form/:id' element={<Form />} />
+            <Route path='/table' element={<Table />} />
+            <Route path='/user' element={<User />} />
+            <Route path='/useref' element={<UseRef />} />
+            <Route path='/reactmemo' element={<Reactmemo />} />
+          </Routes>
+        </BrowserRouter>
+      </Context.Provider>
+    </Provider>
 
     // <RouterProvider router={router} />
   );

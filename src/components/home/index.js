@@ -6,7 +6,7 @@ export default function Home(props) {
 
     const navigate = useNavigate()
     return (
-        <div>Home Page
+        <div>This is CICD check
             {/* <Outlet /> */}
             {/* {props.children} */}
             <User setButtonLabel={props.setButtonLabel} />
